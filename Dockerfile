@@ -1,6 +1,6 @@
-ARG JDK_VERSION=latest
+ARG MAVEN_JDK_VERSION=latest
 
-FROM jdk:${JDK_VERSION}
+FROM maven:${MAVEN_JDK_VERSION}
 USER root
 
 # install nodejs as root
@@ -12,9 +12,9 @@ RUN \
     apt-get update -qqy && \
     apt-get install -qqy gcc g++ make nodejs && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/* && \
-	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
-	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
-	sudo apt-get update && sudo apt-get install --no-install-recommends yarn
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+	apt-get update && apt-get install --no-install-recommends yarn
 
 COPY package.json /wdio/package.json
 COPY yarn.lock /wdio/yarn.lock

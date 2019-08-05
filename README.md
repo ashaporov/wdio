@@ -1,14 +1,13 @@
 # jdk-node-wdio
-Dockerfile with JDK, NodeJS and wdio(with ts). Versions are configurable.
+Dockerfile with JDK+maven, NodeJS, and wdio(with ts). Versions are configurable.
+
 
 ## Build
 
-You may build image with desired versions of JDK and NodeJS:
-- **JDK_VERSION**=`8u192-zulu-alpine` see available versions - [Java SE JDK docker images](https://hub.docker.com/_/microsoft-java-jdk)
+You may build image with desired versions of JDK, Maven and NodeJS:
+- **MAVEN_JDK_VERSION**=`3-jdk-8` see available versions - [maven docker image](https://hub.docker.com/_/maven/)
 - **NODE_VERSION**=`10` see available version - [Node.js Binary Distributions](https://github.com/nodesource/distributions/blob/master/README.md#debinstall)
 
-### Examples
+### Command Line
 
-#### Command Line
-
-`docker build --build-arg NODE_VERSION=10 --build-arg JDK_VERSION=8u192-zulu-alpine -f Dockerfile -t jdk-node-wdio .`
+`docker build --build-arg NODE_VERSION=10 --build-arg MAVEN_JDK_VERSION=3-jdk-8 -f Dockerfile -t jdk-mvn-node .`
