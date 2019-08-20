@@ -1,4 +1,4 @@
-FROM openjdk:14
+FROM openjdk:11-jdk-slim
 USER root
 
 # install nodejs as root
@@ -6,7 +6,7 @@ USER root
 WORKDIR /install/
 ARG NODE_VERSION=10
 
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update; apt-get install curl
 
 RUN \
     curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash && \
