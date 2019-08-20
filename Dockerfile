@@ -1,3 +1,9 @@
+FROM ubuntu:16.04
+
+# Install prerequisites
+RUN apt-get update && apt-get install -y curl && \
+RUN apt-get update && apt-get install -y bash
+
 FROM openjdk:14-alpine
 USER root
 
@@ -6,7 +12,7 @@ USER root
 WORKDIR /install/
 ARG NODE_VERSION=10
 RUN \
-    curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x && \
+    curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash && \
     apt-get update -qqy && \
     apt-get install -qqy gcc g++ make nodejs && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/* && \
