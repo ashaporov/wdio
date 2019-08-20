@@ -1,9 +1,3 @@
-FROM ubuntu:16.04
-
-# Install prerequisites
-RUN apt-get update && apt-get install -y curl && \
-RUN apt-get update && apt-get install -y bash
-
 FROM openjdk:14-alpine
 USER root
 
@@ -11,6 +5,10 @@ USER root
 # https://github.com/nodesource/distributions/blob/master/README.md#debinstall
 WORKDIR /install/
 ARG NODE_VERSION=10
+
+RUN apk add --no-cache bash
+RUN apk --no-cache add curl
+
 RUN \
     curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash && \
     apt-get update -qqy && \
