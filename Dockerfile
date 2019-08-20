@@ -1,4 +1,4 @@
-FROM openjdk:14-alpine
+FROM openjdk:14
 USER root
 
 # install nodejs as root
