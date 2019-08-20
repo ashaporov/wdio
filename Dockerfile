@@ -6,7 +6,7 @@ USER root
 WORKDIR /install/
 ARG NODE_VERSION=10
 RUN \
-    curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - && \
+    curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x && \
     apt-get update -qqy && \
     apt-get install -qqy gcc g++ make nodejs && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/* && \
