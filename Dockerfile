@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk-slim
+FROM openjdk:14-alpine
 USER root
 
 # install nodejs as root
@@ -6,16 +6,17 @@ USER root
 WORKDIR /install/
 ARG NODE_VERSION=10
 
-RUN apt-get update; apt-get install curl
+RUN apk add --no-cache bash
+RUN apk add --no-cache curl
 
 RUN \
     curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash && \
-    apt-get update -qqy && \
-    apt-get install -qqy gcc g++ make nodejs && \
+    apk update -qqy && \
+    apk add -qqy gcc g++ make nodejs && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/* && \
 	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 	echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-	apt-get update && apt-get install --no-install-recommends yarn
+	apk update && apk add --no-install-recommends yarn
 
 USER root
 
@@ -33,8 +34,8 @@ USER root
 ARG CHROME_VERSION="google-chrome-stable"
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
   && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
-  && apt-get update -qqy \
-  && apt-get -qqy install \
+  && apk add update -qqy \
+  && apk add -qqy install \
     ${CHROME_VERSION:-google-chrome-stable} \
   && rm /etc/apt/sources.list.d/google-chrome.list \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
@@ -75,11 +76,11 @@ USER root
 # Firefox
 #=========
 ARG FIREFOX_VERSION=55.0.3
-RUN apt-get update -qqy \
-  && apt-get -qqy --no-install-recommends install firefox \
+RUN apk update -qqy \
+  && apk add -qqy --no-install-recommends install firefox \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
   && wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.bz2 \
-  && apt-get -y purge firefox \
+  && apk add -y purge firefox \
   && rm -rf /opt/firefox \
   && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
   && rm /tmp/firefox.tar.bz2 \
