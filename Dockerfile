@@ -6,8 +6,7 @@ USER root
 WORKDIR /install/
 ARG NODE_VERSION=10
 
-RUN apk add --no-cache bash
-RUN apk --no-cache add curl
+RUN apt-get update && apt-get install -y curl
 
 RUN \
     curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash && \
