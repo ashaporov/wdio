@@ -11,3 +11,7 @@ You may build image with desired versions of JDK, Maven and NodeJS:
 ### Command Line
 
 `docker build --build-arg NODE_VERSION=10 --build-arg MAVEN_JDK_VERSION=3-jdk-8 -f Dockerfile -t jdk-mvn-node .`
+
+## Browsers
+
+Firefox and Chrome
