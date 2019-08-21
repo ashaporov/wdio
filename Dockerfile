@@ -8,7 +8,7 @@ ARG NODE_VERSION=10
 
 RUN apk add --no-cache bash
 RUN apk add --no-cache curl
-apk add --no-cache gnupg
+RUN apk add --no-cache gnupg
 
 RUN \
     curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash && \
