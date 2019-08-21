@@ -8,13 +8,14 @@ ARG NODE_VERSION=10
 
 RUN apk add --no-cache bash
 RUN apk add --no-cache curl
+apk add --no-cache gnupg
 
 RUN \
     curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash && \
     apk update -qqy && \
     apk add -qqy gcc g++ make nodejs && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/* && \
-	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg - && \
 	echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
 	apk update && apk add --no-install-recommends yarn
 
@@ -32,7 +33,7 @@ USER root
 #============================================
 
 ARG CHROME_VERSION="google-chrome-stable"
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg - \
   && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
   && apk add update -qqy \
   && apk add -qqy install \
