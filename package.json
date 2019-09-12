@@ -4,18 +4,19 @@
   "description": "WebdriverIO and TypeScript",
   "main": "index.js",
   "scripts": {
-    "prettier": "prettier --write --loglevel warn \"**/**/*.ts\"",
-    "test": "wdio wdio.conf.js",
-    "test2": "rimraf reports/* && npm run prettier && wdio",
-    "dev": "npm run prettier && wdio --spec",
-    "report:history": "mkdir -p allure-report/history allure-results/history && cp -a allure-report/history allure-results/",
     "clean-report": "rimraf allure-results",
+    "dev": "npm run prettier && npm run report:history && wdio wdio.conf.js",
+    "prettier": "prettier --write --loglevel warn \"**/**/*.ts\"",
+    "report": "npm run clean-report && npm run test ; npm run run-report",
+    "report:history": "cp -a ./allure-report/history ./allure-results/",
     "run-report": "allure generate allure-results/ --clean && allure open -p 8000",
-    "report": "npm run clean-report && npm run test ; npm run run-report"
+    "test": "wdio wdio.conf.js",
+    "test2": "rimraf ./reports/* && npm run prettier && wdio"
   },
   "author": "ashaporov@gk-software.com",
   "license": "ISC",
   "dependencies": {
+    "@slack/webhook": "^5.0.1",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
     "@types/node": "^10.14.8",
@@ -23,7 +24,7 @@
     "@wdio/cli": "^5.10.1",
     "@wdio/local-runner": "^5.10.1",
     "@wdio/mocha-framework": "^5.10.1",
-	"@wdio/spec-reporter": "^5.9.3",
+    "@wdio/spec-reporter": "^5.9.3",
     "@wdio/sync": "^5.10.1",
     "allure-commandline": "^2.9.0",
     "chai": "^4.2.0",
@@ -35,6 +36,6 @@
     "webdriverio": "^5.10.1"
   },
   "devDependencies": {
-	"@wdio/selenium-standalone-service": "^5.9.3"
+    "@wdio/selenium-standalone-service": "^5.9.3"
   }
 }
