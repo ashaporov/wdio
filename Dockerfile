@@ -18,5 +18,6 @@ RUN \
 
 COPY package.json /wdio/package.json
 COPY yarn.lock /wdio/yarn.lock
+RUN mkdir /wdio/reports
 WORKDIR /wdio/
 RUN yarn
