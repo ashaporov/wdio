@@ -13,12 +13,12 @@
 	"test:report": "npm run prettier && npm run report:history && wdio wdio.conf.js",
     "test:ent1": "wdio wdio.conf.js --suite ent1",
     "test:ent4": "wdio wdio.conf.js --suite ent4",
-    "test:adidas": "wdio wdio.conf.js --suite adidas",
-    "test:richemont": "wdio wdio.conf.js --suite richemont",
+    "test:ado": "wdio wdio.conf.js --suite adidas",
+    "test:rim": "wdio wdio.conf.js --suite richemont",
     "test:e2e_ent1": "wdio wdio.conf.js --suite e2e_ent1",
     "test:e2e_ent4": "wdio wdio.conf.js --suite e2e_ent4",
-    "test:e2e_adidas": "wdio wdio.conf.js --suite e2e_adidas",
-    "test:e2e_richemont": "wdio wdio.conf.js --suite e2e_richemont"
+    "test:e2e_ado": "wdio wdio.conf.js --suite e2e_adidas",
+    "test:e2e_rim": "wdio wdio.conf.js --suite e2e_richemont"
   },
   "author": "ashaporov@gk-software.com",
   "license": "ISC",
