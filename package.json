@@ -45,6 +45,7 @@
     "webdriverio": "^5.16.10"
   },
   "devDependencies": {
-    "@wdio/selenium-standalone-service": "^5.16.10"
+    "@wdio/selenium-standalone-service": "^5.16.10",
+    "ws": "^7.2.1"
   }
 }
