@@ -46,6 +46,6 @@
   },
   "devDependencies": {
     "@wdio/selenium-standalone-service": "^5.16.10",
-    "ws": "^7.2.1"
+    "ws": "^7.4.6"
   }
 }
